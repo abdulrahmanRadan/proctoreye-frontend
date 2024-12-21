@@ -25,12 +25,12 @@
     "noUncheckedSideEffectImports": true
   },
   "include": [
-    "app"
+    "src"
   ],
   "baseUrl": ".",
   "paths": {
     "@/*": [
-      "./app/*"
+      "./src/*"
     ]
   }
 }
