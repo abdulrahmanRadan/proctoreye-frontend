@@ -1,12 +1,21 @@
-import "./App.css";
-import { Button } from "./components/ui/button";
+// src/App.tsx
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import Dashboard from "./pages/Dashboard";
+import Students from "./pages/Students";
 
-function App() {
+const App = () => {
   return (
-    <>
-      <Button>Click me </Button>
-    </>
+    <Router>
+      <Routes>
+        {/* Wrap the routes with the Layout */}
+        <Route path="/" element={<Layout />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="students" element={<Students />} />
+        </Route>
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
