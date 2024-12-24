@@ -1,20 +1,17 @@
-// src/App.tsx
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./Layout";
 import Dashboard from "./pages/Dashboard";
 import Students from "./pages/Students";
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <Router>
-      <Routes>
-        {/* Wrap the routes with the Layout */}
-        <Route path="/" element={<Layout />}>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="students" element={<Students />} />
-        </Route>
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="students" element={<Students />} />
+      </Route>
+    </Routes>
   );
 };
 
