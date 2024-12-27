@@ -1,13 +1,28 @@
-import Header from "../components/Header";
+import EntityPage from "./EntityPage";
 
 const Students: React.FC = () => {
+  const students = [
+    { id: 1, name: "Student 1" },
+    { id: 2, name: "Student 2" },
+    // أضف المزيد من الطلاب هنا
+  ];
+
+  const handleAddStudent = () => {
+    // منطق إضافة طالب جديد
+  };
+
+  const handleSearchStudent = (query: string) => {
+    // منطق البحث عن طالب
+    console.log(query);
+  };
+
   return (
-    <div>
-      <Header page="Student" />
-      <div className="p-4">
-        <h2>Welcome to the Students</h2>
-      </div>
-    </div>
+    <EntityPage
+      page="Student"
+      entities={students}
+      onAdd={handleAddStudent}
+      onSearch={handleSearchStudent}
+    />
   );
 };
 
