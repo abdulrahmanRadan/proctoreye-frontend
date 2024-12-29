@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import { useStudentContext } from "../context/StudentContext";
 
-const AddStudent: React.FC = () => {
+const AddExamp: React.FC = () => {
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
   const [college, setCollege] = useState("");
@@ -11,32 +10,23 @@ const AddStudent: React.FC = () => {
   const [specialization, setSpecialization] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
 
-  const { addStudent } = useStudentContext();
   const navigate = useNavigate();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       setImageFile(event.target.files[0]);
-    } else {
-      setImageFile(null);
     }
   };
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!number || !name || !college || !level || !specialization) {
-      alert("Please fill all fields");
-      return;
-    }
-
-    if (!imageFile) {
-      alert("Please select an image file");
-      return;
-    }
-
     try {
-      const newStudent = {
+      if (!number || !name || !college || !level || !specialization) {
+        throw new Error("Please fill all fields");
+      }
+
+      const examp = {
         id: Date.now(),
         number,
         name,
@@ -46,18 +36,17 @@ const AddStudent: React.FC = () => {
         imageFile,
       };
 
-      addStudent(newStudent);
-      alert("Student added successfully!");
-      navigate("/students");
+      AddExamp(examp);
+      alert("examp added successfully!");
+      navigate("/examps");
     } catch (error) {
-      console.error("Error adding student:", error);
-      alert("Error adding student");
+      console.error("Error adding examp:", error);
     }
   };
 
   return (
     <div>
-      <Header page="Add Student" />
+      <Header page="Add Examp" />
       <form onSubmit={handleSubmit} className="p-4 flex flex-col gap-4">
         <input
           type="text"
@@ -111,4 +100,4 @@ const AddStudent: React.FC = () => {
   );
 };
 
-export default AddStudent;
+export default AddExamp;

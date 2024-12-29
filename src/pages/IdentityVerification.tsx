@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import { useRef, useState, useCallback } from "react";
 
-const IdentityVerification: React.FC = () => {
+const IdentityVerification = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isCameraEnabled, setIsCameraEnabled] = useState(false);
   const [isVerificationStarted, setIsVerificationStarted] = useState(false);
@@ -72,7 +72,6 @@ const IdentityVerification: React.FC = () => {
       <div className="p-4">
         <h2 className="text-2xl font-bold mb-4">Verify Student Identity</h2>
         <div className="flex flex-col items-center">
-          {/* عرض الفيديو */}
           <video
             ref={videoRef}
             autoPlay

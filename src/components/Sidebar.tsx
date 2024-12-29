@@ -36,6 +36,16 @@ const Sidebar: React.FC = () => {
         >
           Identity Verification
         </NavLink>
+        <NavLink
+          to="/examps"
+          className={({ isActive }) =>
+            `block p-2 rounded-lg ${
+              isActive ? "bg-blue-600 text-white" : "text-gray-700"
+            }`
+          }
+        >
+          Examp
+        </NavLink>
       </nav>
     </aside>
   );

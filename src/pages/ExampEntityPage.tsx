@@ -1,27 +1,25 @@
 import Header from "../components/Header";
 import { useState } from "react";
-import { Student } from "../context/Student";
-
-interface Entity extends Student {
-  name: string;
+interface ExampEntity {
+  day: string;
+  date: string;
   college: string;
   level: string;
   specialization: string;
-  imageFile: string | File | undefined;
 }
 
-interface EntityProps {
+interface ExampEntityProps {
   page: string;
-  entities: Entity[];
+  entities: ExampEntity[];
   onAdd: () => void;
   onSearch: (query: string) => void;
-  onEdit: (name: string) => void; // إضافة دالة التعديل
-  onDelete: (name: string) => void; // إضافة دالة الحذف
+  onEdit: (name: string) => void;
+  onDelete: (name: string) => void;
 }
 
-const EntityPage: React.FC<EntityProps> = ({
+const ExampEntityPage: React.FC<ExampEntityProps> = ({
   page,
-  entities,
+  entities = [],
   onAdd,
   onSearch,
   onEdit,
@@ -32,7 +30,9 @@ const EntityPage: React.FC<EntityProps> = ({
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const query = event.target.value;
     setSearchQuery(query);
-    onSearch(query);
+    if (onSearch) {
+      onSearch?.(query);
+    }
   };
 
   return (
@@ -70,36 +70,40 @@ const EntityPage: React.FC<EntityProps> = ({
             </tr>
           </thead>
           <tbody>
-            {entities.map((entity) => (
-              <tr key={entity.name}>
+            {entities?.map((entity) => (
+              <tr key={entity?.college}>
                 <td className="border border-gray-300 px-4 py-2">
-                  <img
-                    src={entity.imageFile as string}
-                    alt={entity.name}
-                    className="w-16 h-16 object-cover rounded-full" // عرض الصورة بشكل دائري
-                  />
+                  {entity?.day}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  {entity.name}
+                  {entity?.date}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  {entity.college}
+                  {entity?.college}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  {entity.level}
+                  {entity?.level}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  {entity.specialization}
+                  {entity?.specialization}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
                   <button
-                    onClick={() => onEdit(entity.name)}
+                    onClick={() => {
+                      if (onEdit) {
+                        onEdit?.(entity?.college);
+                      }
+                    }}
                     className="bg-yellow-500 text-white px-2 py-1 rounded-lg hover:bg-yellow-600 mr-2"
                   >
                     Edit
                   </button>
                   <button
-                    onClick={() => onDelete(entity.name)}
+                    onClick={() => {
+                      if (onDelete) {
+                        onDelete?.(entity?.college);
+                      }
+                    }}
                     className="bg-red-600 text-white px-2 py-1 rounded-lg hover:bg-red-700"
                   >
                     Delete
@@ -114,4 +118,4 @@ const EntityPage: React.FC<EntityProps> = ({
   );
 };
 
-export default EntityPage;
+export default ExampEntityPage;

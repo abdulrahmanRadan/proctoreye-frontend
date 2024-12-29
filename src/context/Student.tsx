@@ -4,5 +4,5 @@ export interface Student {
   college: string;
   level: string;
   specialization: string;
-  imageFile?: string;
+  imageFile: string | File | undefined;
 }

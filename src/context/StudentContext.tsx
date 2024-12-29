@@ -6,7 +6,7 @@ interface Student {
   college: string;
   level: string;
   specialization: string;
-  imageFile: string | undefined;
+  imageFile: string | File | undefined;
 }
 
 interface StudentContextProps {
