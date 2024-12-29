@@ -9,7 +9,15 @@ const Students: React.FC = () => {
   const handleAddStudent = () => {
     navigate("/add-student");
   };
+  const handleEditStudent = (name: string) => {
+    // logic to edit a student
+    console.log(`Editing student: ${name}`);
+  };
 
+  const handleDeleteStudent = (name: string) => {
+    // logic to delete a student
+    console.log(`Deleting student: ${name}`);
+  };
   const handleSearchStudent = (query: string) => {
     // منطق البحث عن طالب
     console.log(query);
@@ -21,6 +29,8 @@ const Students: React.FC = () => {
       entities={students}
       onAdd={handleAddStudent}
       onSearch={handleSearchStudent}
+      onEdit={handleEditStudent}
+      onDelete={handleDeleteStudent}
     />
   );
 };

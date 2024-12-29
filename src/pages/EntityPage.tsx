@@ -1,12 +1,13 @@
 import Header from "../components/Header";
 import { useState } from "react";
+import { Student } from "../context/Student";
 
-interface Entity {
+interface Entity extends Student {
   name: string;
   college: string;
   level: string;
   specialization: string;
-  imageFile: string; // تعديل النوع إلى string
+  imageFile?: string; // تعديل النوع إلى string
 }
 
 interface EntityProps {
