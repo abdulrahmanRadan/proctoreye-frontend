@@ -1,14 +1,13 @@
+import { useNavigate } from "react-router-dom";
+import { useStudentContext } from "../context/StudentContext";
 import EntityPage from "./EntityPage";
 
 const Students: React.FC = () => {
-  const students = [
-    { id: 1, name: "Student 1" },
-    { id: 2, name: "Student 2" },
-    // أضف المزيد من الطلاب هنا
-  ];
+  const navigate = useNavigate();
+  const { students } = useStudentContext();
 
   const handleAddStudent = () => {
-    // منطق إضافة طالب جديد
+    navigate("/add-student");
   };
 
   const handleSearchStudent = (query: string) => {
